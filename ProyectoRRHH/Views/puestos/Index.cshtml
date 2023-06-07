@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProyectoRRHH.Models.puesto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Puestos</h2>
+<p>
+    <a asp-action="Create" class="btn btn-success">Agregar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <h4>Nombre</h4>
+            </th>
+            <th>
+                <h4>Nivel de Riesgo</h4>
+            </th>
+            <th>
+                <h4>Salario Mínimo</h4>
+            </th>
+            <th>
+                <h4>Salario Máximo</h4>
+            </th>
+            <th>
+                <h4>Estado</h4>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nivelriesgo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salariomin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salariomax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.id">Editar</a> |
+                 <!--<a asp-action="Details" class="btn btn-primary" asp-route-id="@item.id">Detalles</a>-->
+                 <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

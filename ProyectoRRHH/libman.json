@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "select2@4.0.13",
+      "destination": "wwwroot/select2/"
+    },
+    {
+      "library": "select2-bootstrap-css@1.4.6",
+      "destination": "wwwroot/select2-bootstrap-css/"
+    }
+  ]
+}

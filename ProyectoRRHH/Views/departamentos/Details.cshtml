@@ -1,0 +1,25 @@
+﻿@model ProyectoRRHH.Models.departamento
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>departamento</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <a>Departamento</a>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.departamento1)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Editar</a> |
+    <a asp-action="Index">Volver</a>
+</div>

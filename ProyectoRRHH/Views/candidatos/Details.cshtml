@@ -1,0 +1,109 @@
+﻿@model ProyectoRRHH.Models.candidato
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>candidato</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cedula)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cedula)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.salarioaspira)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.salarioaspira)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.explaboral)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.explaboral)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.competencia)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var competencias = String.Join(", ", Model.competencia.Select(x => x.descripcion).ToArray());
+            }
+            @Html.DisplayFor(model => competencias)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.idiomas)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var idiomas = String.Join(", ", Model.idiomas.Select(x => x.nombre).ToArray());
+            }
+            @Html.DisplayFor(model => idiomas)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.empresa)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.empresa)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.puestoocupado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.puestoocupado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fechadesde)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fechadesde)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fechahasta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fechahasta)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.salario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.salario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.recomendadopor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.recomendadopor)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.departamentoNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.departamentoNavigation.departamento1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.puestoaspiraNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.puestoaspiraNavigation.nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

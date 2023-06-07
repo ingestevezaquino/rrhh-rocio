@@ -1,0 +1,106 @@
+﻿@model ProyectoRRHH.Models.candidato
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>candidato</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="cedula" class="control-label"></label>
+                <input asp-for="cedula" class="form-control" />
+                <span asp-validation-for="cedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="puestoaspira" class="control-label"></label>
+                <select asp-for="puestoaspira" class ="form-control" asp-items="ViewBag.puestoaspira"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="departamento" class="control-label"></label>
+                <select asp-for="departamento" class ="form-control" asp-items="ViewBag.departamento"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="competencia" class="control-label"></label>
+                <select multiple asp-for="competencia" class="form-control" asp-items="ViewBag.competencias"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="idiomas" class="control-label"></label>
+                <select multiple asp-for="idiomas" class="form-control" asp-items="ViewBag.idiomas"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="salarioaspira" class="control-label"></label>
+                <input asp-for="salarioaspira" class="form-control" />
+                <span asp-validation-for="salarioaspira" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="explaboral" class="control-label"></label>
+                <input asp-for="explaboral" class="form-control" />
+                <span asp-validation-for="explaboral" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empresa" class="control-label"></label>
+                <input asp-for="empresa" class="form-control" />
+                <span asp-validation-for="empresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="puestoocupado" class="control-label"></label>
+                <input asp-for="puestoocupado" class="form-control" />
+                <span asp-validation-for="puestoocupado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechadesde" class="control-label"></label>
+                <input asp-for="fechadesde" class="form-control" type="date" />
+                <span asp-validation-for="fechadesde" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechahasta" class="control-label"></label>
+                <input asp-for="fechahasta" class="form-control" type="date" />
+                <span asp-validation-for="fechahasta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="salario" class="control-label"></label>
+                <input asp-for="salario" class="form-control" />
+                <span asp-validation-for="salario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="recomendadopor" class="control-label"></label>
+                <input asp-for="recomendadopor" class="form-control" />
+                <span asp-validation-for="recomendadopor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $("#competencia").select2({
+            theme: "bootstrap"
+        })
+
+        $("#idiomas").select2({
+            theme: "bootstrap"
+        })
+    </script>
+}

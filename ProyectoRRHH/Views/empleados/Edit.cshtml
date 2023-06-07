@@ -1,0 +1,62 @@
+﻿@model ProyectoRRHH.Models.empleado
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>empleado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="cedula" class="control-label"></label>
+                <select asp-for="cedula" class="form-control" asp-items="ViewBag.cedula"></select>
+                <span asp-validation-for="cedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaingreso" class="control-label"></label>
+                <input asp-for="fechaingreso" class="form-control" type="date" />
+                <span asp-validation-for="fechaingreso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="departamento" class="control-label"></label>
+                <select asp-for="departamento" class="form-control" asp-items="ViewBag.departamento"></select>
+                <span asp-validation-for="departamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="puesto" class="control-label"></label>
+                <select asp-for="puesto" class="form-control" asp-items="ViewBag.puesto"></select>
+                <span asp-validation-for="puesto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="salariomensual" class="control-label"></label>
+                <input asp-for="salariomensual" class="form-control" />
+                <span asp-validation-for="salariomensual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado" class="control-label"></label>
+                <input asp-for="estado" class="form-control" />
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

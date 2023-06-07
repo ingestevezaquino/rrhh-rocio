@@ -1,0 +1,57 @@
+﻿@model ProyectoRRHH.Models.capacitacione
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>capacitacione</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="candidato_id" class="control-label"></label>
+                <select asp-for="candidato_id" class="form-control" asp-items="ViewBag.candidato_id"></select>
+                <span asp-validation-for="candidato_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcion" class="control-label"></label>
+                <input asp-for="descripcion" class="form-control" />
+                <span asp-validation-for="descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nivel" class="control-label"></label>
+                <input asp-for="nivel" class="form-control" />
+                <span asp-validation-for="nivel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechadesde" class="control-label"></label>
+                <input asp-for="fechadesde" class="form-control" type="date"/>
+                <span asp-validation-for="fechadesde" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechahasta" class="control-label"></label>
+                <input asp-for="fechahasta" class="form-control" type="date" />
+                <span asp-validation-for="fechahasta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="institucion" class="control-label"></label>
+                <input asp-for="institucion" class="form-control" />
+                <span asp-validation-for="institucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ProyectoRRHH.Models.capacitacione>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Capacitaciones</h2>
+<p>
+    <a asp-action="Create" class="btn btn-success">Agregar</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <h4>Descripción</h4>
+            </th>
+            <th>
+                <h4>Nivel</h4>
+            </th>
+            <th>
+                <h4>Fecha Desde</h4>
+            </th>
+            <th>
+                <h4>Fecha Hasta</h4>
+            </th>
+            <th>
+                <h4>Institución</h4>
+            </th>
+            <th>
+                <h4>Candidato</h4>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nivel)
+            </td>
+                <td>
+                    @{
+                        var fechadesde = ((DateOnly)item.fechadesde).ToString("dd/MM/yyyy");
+                    }
+                    @Html.DisplayFor(modelItem => fechadesde)
+                </td>
+                <td>
+                    @{
+                        var fechahasta = ((DateOnly)item.fechahasta).ToString("dd/MM/yyyy");
+                    }
+                    @Html.DisplayFor(modelItem => fechahasta)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.institucion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.candidato.cedula)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.id">Editar</a> |
+                    <!--<a asp-action="Details" class="btn btn-primary" asp-route-id="@item.id">Detalles</a>-->
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

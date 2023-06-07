@@ -1,0 +1,134 @@
+﻿@model IEnumerable<ProyectoRRHH.Models.empleado>
+
+<h2>Reporte de empleados</h2>
+<hr />
+<div>
+
+    <div class="row align-items-end">
+        <div class="col-sm-3">
+            <label class="form-label">Fecha Inicio</label>
+            <input id="fechaInicio" class="form-control" name="fechaInicio" type="date" required />
+        </div>
+
+        <div class="col-sm-3">
+            <label class="form-label">Fecha Fin</label>
+            <input id="fechaFinal" class="form-control" name="fechaFin" type="date" required />
+        </div>
+
+        <div class="col-sm-3">
+            <a id="reportButton" class="btn btn-success" asp-action="ExportarEmpleadosAExcel" asp-controller="Empleados">Reportes</a>
+        </div>
+
+    </div>
+</div>
+<br />
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaingreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.salariomensual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cedulaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.departamentoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.puestoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @{
+                        var fechaingreso = ((DateOnly)item.fechaingreso).ToString("dd/MM/yyyy");
+                    }
+                    @Html.DisplayFor(modelItem => fechaingreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.salariomensual)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cedulaNavigation.cedula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.departamentoNavigation.departamento1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.puestoNavigation.nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>$(function(){
+                $("#fechaInicio").change(function(){
+                    var fechaInicio = $("#fechaInicio").val();
+                    var originalUrl = $("#reportButton").attr("href");
+
+                    if (!originalUrl.includes("?")) originalUrl = originalUrl + "?";
+
+                    if (originalUrl.includes("fechaInicio")) {
+                        var firstPosition = originalUrl.search("fechaInicio");
+                        var lastPosition = originalUrl.search("&fechaFinal");
+
+                        if (lastPosition != -1)
+                        {
+                            var fechaFinal = originalUrl.slice(lastPosition);
+                            updatedUrl = originalUrl.slice(0, firstPosition) + "fechaInicio=" + fechaInicio + fechaFinal;
+                        }
+                        else
+                            updatedUrl = originalUrl.slice(0, firstPosition) + "fechaInicio=" + fechaInicio;
+                    }
+                    else
+                        var updatedUrl = originalUrl + "fechaInicio=" + fechaInicio;
+
+                    console.log(updatedUrl);
+                    $("#reportButton").attr("href", updatedUrl);
+                });
+                $("#fechaFinal").change(function () {
+                    var fechaFinal = $("#fechaFinal").val();
+                    var originalUrl = $("#reportButton").attr("href");
+
+                    if (originalUrl.includes("&fechaFinal")) {
+                        var firstPosition = originalUrl.search("fechaFinal");
+                        updatedUrl = originalUrl.slice(0, firstPosition - 1) + "&fechaFinal=" + fechaFinal;
+                    }
+                    else
+                        var updatedUrl = originalUrl + "&fechaFinal=" + fechaFinal;
+
+                    console.log(updatedUrl);
+                    $("#reportButton").attr("href", updatedUrl);
+                });
+    });</script>
+}

@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ProyectoRRHH.Models.candidato>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Candidatos</h2>
+<p>
+    <a asp-action="Create" class="btn btn-success">Agregar</a>
+</p>
+
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Buscar por puesto,competencia.." value="@ViewData["candidatos"]" name="Candsearch" style="width:500px;" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+         <a asp-action="Index">Resultados</a>
+     </p>
+
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.salarioaspira)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.competencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idiomas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.explaboral)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.empresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.puestoocupado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechadesde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechahasta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recomendadopor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.departamentoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.puestoaspiraNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salarioaspira)
+            </td>
+            <td>
+                    @{
+                        var competencias = String.Join(", ", item.competencia.Select(x => x.descripcion).ToArray());
+                    }
+                    @Html.DisplayFor(modelItem => competencias)
+                </td>
+                <td>
+                    @{
+                        var idiomas = String.Join(", ", item.idiomas.Select(x => x.nombre).ToArray());
+                    }
+                    @Html.DisplayFor(modelItem => idiomas)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.explaboral)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.puestoocupado)
+            </td>
+            <td>
+                    @{
+                        var FechaDesde = ((DateOnly)item.fechadesde).ToString("dd/MM/yyyy");
+                    }
+                    @Html.DisplayFor(modelItem => FechaDesde)
+            </td>
+
+            <td>
+                    @{
+                        var FechaHasta = ((DateOnly)item.fechahasta).ToString("dd/MM/yyyy");
+                    }
+                    @Html.DisplayFor(modelItem => FechaHasta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recomendadopor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.departamentoNavigation.departamento1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.puestoaspiraNavigation.nombre)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
